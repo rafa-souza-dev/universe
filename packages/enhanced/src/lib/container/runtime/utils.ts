@@ -107,3 +107,8 @@ export function createHash(contents: string): string {
 
 export const normalizeToPosixPath = (p: string) =>
   upath.normalizeSafe(path.normalize(p || ''));
+
+export const isRuntimePluginNameValid = (runtimePluginName: string): boolean =>
+  Boolean(runtimePluginName) &&
+  runtimePluginName !== 'undefined' &&
+  runtimePluginName !== 'null';

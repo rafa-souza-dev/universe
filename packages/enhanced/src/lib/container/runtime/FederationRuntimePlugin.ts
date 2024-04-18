@@ -7,6 +7,7 @@ import {
   modifyEntry,
   createHash,
   normalizeToPosixPath,
+  isRuntimePluginNameValid,
 } from './utils';
 import fs from 'fs';
 import path from 'path';
@@ -87,7 +88,8 @@ class FederationRuntimePlugin {
               `const pluginsToAdd = [`,
               Template.indent(
                 runtimePluginNames.map(
-                  (item) => `${item} ? ${item}() : false,`,
+                  (item) =>
+                    `${isRuntimePluginNameValid(item)} ? ${item}() : false,`,
                 ),
               ),
               `].filter(Boolean);`,
